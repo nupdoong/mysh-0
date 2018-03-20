@@ -28,6 +28,19 @@ int do_cd(int argc, char** argv);
 int do_pwd(int argc, char** argv);
 
 /**
+  do_alias(argc, argv)
+
+  params:
+    argc: # of arguments. argc must be 1.
+    argv: a list of arguments.
+
+  returns:
+    If success, return 0.
+    Else if arguments are not valid, return -1.
+*/
+int do_alias(int argc, char** argv);
+
+/**
   validate_cd_argv(argc, argv)
 
   returns:
@@ -43,5 +56,14 @@ int validate_cd_argv(int argc, char** argv);
     Else return 0. (false)
 */
 int validate_pwd_argv(int argc, char** argv);
+
+/**
+  validate_alias_argv(argc, argv)
+
+  returns:
+   If success, return 1. (true)
+   Else return 0. (false)
+ */
+int validate_alias_argv(int argc, char** argv);
 
 #endif // MYSH_COMMANDS_H_
