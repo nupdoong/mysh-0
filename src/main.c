@@ -80,7 +80,7 @@ apply_alias:
       for (int i = 0; i < n_aliased_command; ++i) {
         if (strcmp(argv[0], aliased_commands[i]->alias) == 0) {
           // TODO: fill here!
-
+          strcpy(buf, aliased_commands[i]->command);
           goto apply_alias;
         }
       }
@@ -118,13 +118,45 @@ int do_alias(int argc, char** argv) {
     return -1;
 
   // TODO: Fill it!
+  /*const char *equals;
+  equals = strchr(alias, '=');
+
+  if(!equals || insert_alias_len(alias, equals - alias, equals + 1)){
+     mysh_error("alias: invalid argument \"%s\"", alias);
+     return 1;
+  }
+  */
+  char* temp = strtok(argv[1], "=");
+  printf("alias : %s\n",temp);
+
+  aliased_commands[n_aliased_command] = malloc(sizeof(struct aliased_command));
+
+  strcpy(aliased_commands[n_aliased_command]->alias, temp); 
+
+  temp = strtok(NULL, "\"");
+ 
+  printf("command : %s\n", temp);
+  strcpy(aliased_commands[n_aliased_command++]->command, temp);  
 
   return 0;
 }
 
 int validate_alias_argv(int argc, char** argv) {
   // TODO: Fill it!
-  return 1;
+  /*int ret; 
+  if(argc == 0){
+     ret = print_all_shell_aliases();
+  }
+  else{
+     ret = 0;
+     do{
+        ret |= do_alias(*argv++);
+     } while (--argc);
+  }
+  */
+  if(argc == 2 && strcmp(argv[0], "alias") == 0)
+    return 1;
+  else return 0;
 }
 
 

@@ -12,13 +12,29 @@ void mysh_parse_command(const char* command,
   char* buf = strdup(command);
 
   char* temp = strtok(buf, " \n\t");
- 
-  while(temp != NULL)
-  {
+
+  if(temp != NULL && strcmp(temp, "alias") == 0){
+     *argc = 0;
      (*argv)[*argc] = (char*)malloc(sizeof(char)*16);
-     (*argv)[*argc] = strdup(temp);
+     strcpy((*argv)[*argc], temp);
+     
      (*argc)++;
-     temp = strtok(NULL, " \n\t");
+     
+     temp = strtok(NULL, "\n");
+     (*argv)[*argc] = (char*)malloc(sizeof(char)*16);
+     strcpy((*argv)[*argc], temp);
+
+     (*argc)++;
+  }
+  else{
+ 
+     while(temp != NULL)
+     {
+        (*argv)[*argc] = (char*)malloc(sizeof(char)*16);
+        (*argv)[*argc] = strdup(temp);
+        (*argc)++;
+        temp = strtok(NULL, " \n\t");
+     }
   }
 
   if((*argc) == 0)
