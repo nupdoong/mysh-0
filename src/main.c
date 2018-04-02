@@ -127,7 +127,6 @@ int do_alias(int argc, char** argv) {
   }
   */
   char* temp = strtok(argv[1], "=");
-  printf("alias : %s\n",temp);
 
   aliased_commands[n_aliased_command] = malloc(sizeof(struct aliased_command));
 
@@ -135,7 +134,6 @@ int do_alias(int argc, char** argv) {
 
   temp = strtok(NULL, "\"");
  
-  printf("command : %s\n", temp);
   strcpy(aliased_commands[n_aliased_command++]->command, temp);  
 
   return 0;
